@@ -1,0 +1,18 @@
+package net.strong.dao.sql;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import net.strong.lang.util.LinkedLongArray;
+
+public class QueryLongCallback implements SqlCallback {
+
+	public Object invoke(Connection conn, ResultSet rs, Sql sql) throws SQLException {
+		LinkedLongArray ary = new LinkedLongArray(20);
+		while (rs.next())
+			ary.push(rs.getLong(1));
+		return ary.toArray();
+	}
+
+}
